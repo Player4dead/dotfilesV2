@@ -23,6 +23,6 @@
       };
     };
 
-    custom.persist.home.cache.files = [".zsh_history"];
+    # custom.persist.home.cache.files = [".zsh_history"];
   };
 }

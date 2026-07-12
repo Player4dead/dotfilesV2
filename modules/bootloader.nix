@@ -4,13 +4,11 @@
   in
     lib.mkMerge [
       (lib.mkIf isRaspi {
-        system.nixos.tags = let
-          cfg = config.boot.loader.raspberry-pi;
-        in [
-          "raspberry-pi-${cfg.variant}"
-          cfg.bootloader
-          config.boot.kernelPackages.kernel.version
-        ];
+        boot.loader.raspberry-pi = {
+          enable = true;
+          variant = "5";
+          bootloader = lib.mkForce "kernel";
+        };
       })
 
       (lib.mkIf (!isRaspi) {

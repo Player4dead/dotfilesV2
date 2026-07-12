@@ -15,6 +15,6 @@
       };
     };
 
-    custom.persist.home.cache.directories = [".ssh"];
+    # custom.persist.home.cache.directories = [".ssh"];
   };
 }

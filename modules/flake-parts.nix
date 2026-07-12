@@ -1,7 +1,7 @@
 {inputs, ...}: {
   imports = [
     inputs.flake-parts.flakeModules.modules
-    inputs.wrappers.flakeModules.wrappers
+    # inputs.wrappers.flakeModules.wrappers
   ];
 
   systems = [
@@ -12,7 +12,7 @@
     # "aarch64-darwin"
   ];
 
-  # perSystem = {pkgs, ...}: {
-  # formatter = pkgs.alejandra;
-  # };
+  perSystem = {pkgs, ...}: {
+    formatter = pkgs.alejandra;
+  };
 }

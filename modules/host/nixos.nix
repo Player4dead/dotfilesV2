@@ -7,10 +7,10 @@
     system ? "x86_64-linux",
     isVm ? false,
     user ? "user",
-    creation ? inputs.nixos-raspberrypi.lib.nixosSystem,
+    creation ? inputs.nixpkgs.lib.nixosSystem,
     extraConfig ? {},
   }:
-    inputs.nixos-raspberrypi.lib.nixosSystem {
+    creation {
       inherit system;
 
       modules = [
@@ -29,15 +29,15 @@
   mkVm = host: mkNixosArgs: mkNixos host (mkNixosArgs // {isVm = true;});
 in {
   flake.nixosConfigurations = {
-    desktop = mkNixos "desktop" {};
+    # desktop = mkNixos "desktop" {};
 
     raspi = mkNixos "raspi" {
-      system = "aarch64";
+      system = "aarch64-linux";
       creation = inputs.nixos-raspberrypi.lib.nixosSystem;
     };
 
     # create VMs for each host configuration, build using
     # nixos-rebuild build-vm --flake .#desktop-vm
-    desktop-vm = mkVm "desktop" {};
+    # desktop-vm = mkVm "desktop" {};
   };
 }

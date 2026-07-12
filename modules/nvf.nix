@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.modulesmodules.nixos = {pkgs, ...}: {
+  flake.modules.nixos.nixos = {pkgs, ...}: {
     imports = [inputs.nvf.nixosModules.nvf];
     environment.systemPackages = with pkgs; [nixd];
     programs.nvf = {
