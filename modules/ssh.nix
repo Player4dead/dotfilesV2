@@ -11,10 +11,10 @@
         PermitRootLogin = "no";
         AllowUsers = ["${user}"];
         MaxAuthTries = 3;
-        PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+        # PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
       };
     };
 
-    # custom.persist.home.cache.directories = [".ssh"];
+    custom.persist.home.cache.directories = [".ssh"];
   };
 }

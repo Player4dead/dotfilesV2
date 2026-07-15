@@ -20,7 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    preservation.url = "github:nix-community/preservation";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
@@ -43,7 +46,5 @@
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = import-tree ./modules;
-
-      # flake.templates = import ./templates;
     };
 }
