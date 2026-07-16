@@ -7,17 +7,15 @@
     system ? "x86_64-linux",
     isVm ? false,
     user ? "user",
-    creation ? inputs.nixpkgs.lib.nixosSystem,
     extraConfig ? {},
   }:
-    creation {
+    inputs.nixpkgs.lib.nixosSystem {
       inherit system;
 
       modules = [
         {
-          config.custom.constants = rec {
+          config.custom.constants = {
             inherit host isVm user;
-            isRaspi = host == "raspi";
           };
         }
         config.flake.modules.nixos."host_${host}"
@@ -31,10 +29,7 @@ in {
   flake.nixosConfigurations = {
     # desktop = mkNixos "desktop" {};
 
-    raspi = mkNixos "raspi" {
-      system = "aarch64-linux";
-      creation = inputs.nixos-raspberrypi.lib.nixosSystem;
-    };
+    server = mkNixos "server" {};
 
     # create VMs for each host configuration, build using
     # nixos-rebuild build-vm --flake .#desktop-vm
