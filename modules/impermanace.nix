@@ -83,19 +83,19 @@
 
         config = {
           # root and home on tmpfs
-          fileSystems."/" = lib.mkForce {
-            device = "tmpfs";
-            fsType = "tmpfs";
-            options = [
-              "defaults"
-              # whatever size feels comfortable, smaller is better
-              # a good default is to start with 1G, having a small tmpfs acts as a tripwire hinting that there is something
-              # you should probably persist, but haven't done so
-              # "size=1G"
-              "size=1GB"
-              "mode=755"
-            ];
-          };
+          # fileSystems."/" = lib.mkForce {
+          #   device = "tmpfs";
+          #   fsType = "tmpfs";
+          #   options = [
+          #     "defaults"
+          #     # whatever size feels comfortable, smaller is better
+          #     # a good default is to start with 1G, having a small tmpfs acts as a tripwire hinting that there is something
+          #     # you should probably persist, but haven't done so
+          #     # "size=1G"
+          #     "size=1GB"
+          #     "mode=755"
+          #   ];
+          # };
 
           # shut sudo up
           security.sudo.extraConfig = "Defaults lecture=never";

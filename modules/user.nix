@@ -29,7 +29,7 @@
             };
             ${user} = {
               isNormalUser = true;
-              initialPassword = "password";
+              initialPassword = "passwd";
               # hashedPasswordFile = "/persist/etc/shadow/${user}";
               shell = pkgs.zsh;
               extraGroups = [

@@ -2,7 +2,7 @@
   flake.modules.nixos.core = {
     boot.zfs = {
       forceImportRoot = false;
-      devNodes = "/dev/disk/by-partuuid";
+      # devNodes = "/dev/disk/by-partuuid";
       extraPools = ["zroot"];
     };
 

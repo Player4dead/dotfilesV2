@@ -21,7 +21,7 @@
         disk = {
           main = {
             type = "disk";
-            device = "/dev/sda";
+            device = "/dev/nvme0n1";
             content = {
               type = "gpt";
               partitions = {
@@ -61,7 +61,7 @@
               acltype = "posixacl";
               xattr = "sa";
               atime = "off";
-              autotrim = "on";
+              # autotrim = "on";
               # ashift = "12";
 
               normalization = "formD";
