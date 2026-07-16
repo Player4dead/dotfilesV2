@@ -24,7 +24,7 @@
           # read -s -p "" PASSWORD && mkpasswd -m sha-512 "$PASSWORD" | sudo tee /persist/etc/shadow/root
           users = {
             root = {
-              initialPassword = "password";
+              initialPassword = "passwd";
               # hashedPasswordFile = "/persist/etc/shadow/root";
             };
             ${user} = {
