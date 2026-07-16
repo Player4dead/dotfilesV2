@@ -1,23 +1,27 @@
 {
-  flake.modules.nixos.host_raspi = {
+  flake.modules.nixos.host_server = {
     config,
     lib,
     pkgs,
-    modulePath,
+    modulesPath,
     ...
   }: {
-    # imports = [
-    #   (modulePath + "/installer/scan/not-detected.nix")
-    # ];
+    imports = [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
     boot = {
       supportedFilesystems = ["zfs"];
-      kernelModules = [];
+      kernelModules = ["kvm-amd"];
       extraModulePackages = [];
       initrd = {
-        availableKernelModules = ["nvme" "xhci_pci" "ums_realtek" "usb_storage" "sd_mod"];
+        availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "sd_mod"];
         kernelModules = [];
       };
     };
+
+    swapDevices = [];
+
+    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 }
