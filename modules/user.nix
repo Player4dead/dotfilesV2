@@ -36,6 +36,9 @@
                 "networkmanager"
                 "wheel"
               ];
+              openssh.authorizedKeys.keys = [
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGsdIU3f7s1eKdFOFgzNxUMkKOQMbSqhJ7dLtRhe5ipU player4dead@nixos"
+              ];
             };
           };
         };
