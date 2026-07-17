@@ -42,6 +42,7 @@
             };
           };
         };
+        nix.settings.trusted-users = ["${user}"];
       }
 
       # use sops for user passwords if enabled

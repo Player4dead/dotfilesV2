@@ -6,7 +6,8 @@
   flake.deploy.nodes.server = {
     hostname = "nixos.tail077190.ts.net";
     profiles.system = {
-      user = "user";
+      # user = "user";
+      sshUser = "user";
       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos config.flake.nixosConfigurations.server;
     };
   };
