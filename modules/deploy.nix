@@ -5,9 +5,10 @@
 }: {
   flake.deploy.nodes.server = {
     hostname = "nixos.tail077190.ts.net";
+    sshUser = "user";
+
     profiles.system = {
-      # user = "user";
-      sshUser = "user";
+      user = "root";
       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos config.flake.nixosConfigurations.server;
     };
   };
