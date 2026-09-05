@@ -1,7 +1,8 @@
 {
   description = "A very basic flake";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
+    # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -21,18 +22,21 @@
     preservation.url = "github:nix-community/preservation";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:vic/import-tree";
     disko.url = "github:nix-community/disko";
 
     deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs = inputs @ {flake-parts, ...}: let
-    inherit (inputs.nixpkgs.lib.fileset) toList fileFilter;
-    import-tree = path:
-      toList (fileFilter (file: file.hasExt "nix" && !(inputs.nixpkgs.lib.hasPrefix "_" file.name)) path);
+    inherit
+      (inputs.nixpkgs.lib)
+      filesystem
+      hasSuffix
+      ;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = import-tree ./modules;
+      imports = builtins.filter (hasSuffix ".nix") (
+        filesystem.listFilesRecursive ./modules
+      );
     };
 }
